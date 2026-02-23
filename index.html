@@ -13,24 +13,10 @@
         <h1>Adolfo Botero Santos</h1>
         <p class="subtitle">Tu perfil de enlaces</p>
         <div class="links">
-            <a href="#" class="link-card" onclick="descargarVCard()">
+            <a href="tel:+573001234567" class="link-card" onclick="agregarContacto(event)">
                 📞 Número de contacto
                 <span class="link-desc">+57 300 123 4567</span>
             </a>
-                <script>
-                function descargarVCard() {
-                    const vCardData = `BEGIN:VCARD\nVERSION:3.0\nFN:Adolfo Botero\nTEL;TYPE=CELL:+573001234567\nEND:VCARD`;
-                    const blob = new Blob([vCardData], { type: 'text/vcard' });
-                    const url = URL.createObjectURL(blob);
-                    const a = document.createElement('a');
-                    a.href = url;
-                    a.download = 'AdolfoBotero.vcf';
-                    document.body.appendChild(a);
-                    a.click();
-                    document.body.removeChild(a);
-                    URL.revokeObjectURL(url);
-                }
-                </script>
             <a href="https://www.linkedin.com/in/adolfo-b-santos-093349a3/" class="link-card" target="_blank">
                 💼 LinkedIn
                 <span class="link-desc">linkedin.com/in/adolfo-b-santos-093349a3</span>
@@ -146,5 +132,20 @@
             }
         }
     </style>
+    <script>
+        function agregarContacto(event) {
+            event.preventDefault();
+            const vCardData = `BEGIN:VCARD\nVERSION:3.0\nFN:Adolfo Botero Santos\nTEL;TYPE=CELL:+573001234567\nEND:VCARD`;
+            const blob = new Blob([vCardData], { type: 'text/vcard;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'AdolfoBotero.vcf';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+        }
+    </script>
 </body>
 </html>
